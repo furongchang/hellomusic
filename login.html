@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: #dcf0dc;
+        }
+
+        .wrap {
+            width: 414px;
+            height: 312px;
+            border: solid rgb(238, 238, 238) 2px;
+            background-color: whitesmoke;
+        }
+
+        .wrap .title {
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 20px;
+            color: rgb(51, 51, 51);
+            text-align: center;
+
+        }
+
+        .wrap .infor {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 36px;
+
+        }
+
+        .wrap .infor a {
+            text-decoration: none;
+            color: #3481cf;
+        }
+
+        .wrap #form {
+            text-align: center;
+            height: 150px;
+            width: 272px;
+            margin: 0px auto;
+
+        }
+
+        .wrap #form .input {
+            height: 38px;
+            width: 268px;
+            box-sizing: border-box;
+            padding: 10px;
+            padding-right: 0px;
+            margin-bottom: 17px;
+            border-radius: 3px;
+            border: solid #4CAF50 1.38px;
+        }
+
+        .wrap #form #btn {
+            border-radius: 3px;
+            height: 37px;
+            width: 258px;
+            padding: 1px 7px 2px 7px;
+            box-sizing: content-box;
+            border: none;
+            background-color: rgb(136, 210, 48);
+            color: white;
+            font-size: 17px;
+        }
+    </style>
+</head>
+
+<body onload="">
+    <center>
+        <br /><br /><br /><br /><br /><br />
+        <div class="wrap">
+            <div class="title">
+                账号密码登录
+            </div>
+            <div class="infor">
+                Welcome to <a href="hellomusic.html">HELLOMUSIC</a>
+            </div>
+            <form action="hellomusic.html" method="post" id="form" onsubmit="sub()" name="form1">
+                <input type="text" class="input" placeholder="支持QQ号/邮箱/手机号登录" id="username" name="zhanghu">
+                <input type="password" class="input" placeholder="密码" id="password" name="mima">
+                <input type="radio" onchange="zd()">自动登录 <input type="radio" onchange="remember()">记住密码
+                <button type="submit" id="btn" onclick="setCookie(username.value,password.value,30)">登 录</button>
+            </form>
+        </div>
+    </center>
+</body>
+<script>
+    function setCookie(username, password, exdays) {
+        var d = new Date()
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+        var expires = "expires=" + d.toGMTString()
+        document.cookie = username + "=" + password + "," + expires
+    }
+    function getCookie(cname) {
+        var name = cname + "="
+        var ca = document.cookie.split(";")
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim()
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length)
+            }
+        }
+        return ""
+    }
+    function checkCookies(username) {
+        var pass = getCookie(username)
+        if (pass != "") {
+            document.getElementById("password").value = pass
+        }
+    }
+    function remember() {
+        alert("您记住了密码！")
+    }
+    function sub() {
+        alert("登录成功！")
+    }
+    function zd() {
+        alter("已设置自动登录！")
+    }
+    function verify() {
+        var v1 = document.form1.zhanghu.value
+        var v2 = document.form1.mima.value
+        if (v1.length > 0 && v2.length > 0) {
+            alert("输入正确！")
+        }
+        else {
+            alert("输入为空！")
+        }
+    }
+</script>
+
+</html>
